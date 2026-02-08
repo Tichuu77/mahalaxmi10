@@ -203,7 +203,7 @@ export function HeroSection() {
               }`}
             >
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C9862b] mb-1">67+</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C9862b] mb-1">70+</div>
                 <div className="text-xs sm:text-sm text-white/80">Projects</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6">
