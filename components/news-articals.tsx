@@ -14,7 +14,7 @@ const newsArticles = [
     date: "March 15, 2025",
     author: "Mahalaxmi Team",
     category: "Project Launch",
-    image: "/luxury-residential-complex.png",
+    image: "/luxury-residential-comple.jpeg",
   },
   {
     id: 2,
