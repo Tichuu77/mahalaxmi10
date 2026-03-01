@@ -57,6 +57,14 @@ const projects = {
     {
       id: 7,
       title: "Mahalaxmi Nagar - 45",
+      image: "/project_M-45.webp",
+      description: "Premium plotted development near Samruddhi Mahamarg, close to AIIMS, IIM, MIHAN & D-Mart.",
+      location: "MOUZA - SUMTHANA",
+      status: "ongoing"
+    },
+    {
+      id: 8,
+      title: "Mahalaxmi Nagar - 46",
       image: "/ongoingProject11.webp",
       description: "Premium plotted development near Samruddhi Mahamarg, close to AIIMS, IIM, MIHAN & D-Mart.",
       location: "MOUZA - SUMTHANA",
