@@ -117,22 +117,22 @@ const projects = {
     { id: 13, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
     { id: 14, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
   ],
-  launch:[
-  { id: 15, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "lunch" },
+  launch: [
+    { id: 15, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "launch" },
   ]
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     completed: "bg-green-500/80 text-white border-green-500/40",
     ongoing: "bg-blue-500/80 text-white border-blue-500/40",
     upcoming: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
     launch: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
   }
 
-  const statusLabels = {
+  const statusLabels: Record<string, string> = {
     completed: "✓ Completed",
     ongoing: "⚡ Ongoing",
     upcoming: "⏳ Upcoming",
@@ -174,8 +174,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         
         {/* Status Badge */}
         <div className="absolute top-3 right-3">
-          <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-sm ${statusColors[project.status as keyof typeof statusColors]}`}>
-            {statusLabels[project.status as keyof typeof statusLabels]}
+          <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-sm ${statusColors[project.status] ?? ""}`}>
+            {statusLabels[project.status] ?? project.status}
           </span>
         </div>
 
