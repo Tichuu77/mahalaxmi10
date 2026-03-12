@@ -192,8 +192,7 @@ export function HeroSection() {
             >
               <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               <h3 className="text-white text-xs sm:text-sm md:text-base font-bold">
-                Best Investment Opportunity in MIHAN  on Samruddhi Circle
-              </h3>
+                Best Investment Opportunity in MIHAN</h3>
             </div>
 
             {/* Stats Row */}
