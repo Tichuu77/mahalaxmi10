@@ -86,7 +86,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-white/60 text-sm">
                 <MapPin size={14} className="text-white mt-0.5 flex-shrink-0" />
-                123 Luxury Avenue
+                 Flat No. 103, 104, Laxmivihar Apartment, Beside Hotel Airport Centre Point, Wardha Road, Somalwada, Nagpur – 440025
               </li>
             </ul>
           </div>
