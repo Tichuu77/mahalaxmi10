@@ -144,7 +144,7 @@ export function HeroSection() {
             >
               <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               <h3 className="text-xs sm:text-sm md:text-base text-white font-semibold tracking-wide">
-                NMRDA SANCTION | RERA APPROVED PROJECTS
+                NMRDA SANCTION | RERA APPROVED PROJECTS | RL PLOTS
               </h3>
               <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
@@ -158,7 +158,7 @@ export function HeroSection() {
               <div className="inline-flex items-start gap-2 sm:gap-3 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 max-w-4xl">
                 <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-[#C9862b] flex-shrink-0 mt-0.5" />
                 <p className="text-sm sm:text-base md:text-lg text-white/90 text-left leading-relaxed">
-                  <span className="font-semibold text-white">Prime Locations:</span> Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road, Umred Road, Koradi Road & Samruddhi Circle Nagpur
+                  <span className="font-semibold text-white">Prime Locations:</span> Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road, Umred Road, Koradi Road, Samruddhi Circle Nagpur and Near Bhandara Road
                 </p>
               </div>
             </div>
@@ -192,7 +192,7 @@ export function HeroSection() {
             >
               <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               <h3 className="text-white text-xs sm:text-sm md:text-base font-bold">
-                Best Investment Opportunity @ ₹22 Lakh Only on Samruddhi Circle
+                Best Investment Opportunity in MIHAN  on Samruddhi Circle
               </h3>
             </div>
 

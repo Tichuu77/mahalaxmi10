@@ -15,7 +15,7 @@ type Project = {
 const projects = {
   ongoing: [
     {
-      id: 2,
+      id: 1,
       title: "Mahalaxmi Nagar-31",
       image: "/ongoingProject8.webp",
       description: "Ready to move residential layout on Besa-Pipla Road, opposite Zudio & Croma. Prime location with up to 90% bank finance.",
@@ -23,7 +23,7 @@ const projects = {
       status: "ongoing"
     },
     {
-      id: 3,
+      id: 2,
       title: "Mahalaxmi Nagar-39",
       image: "/ongoingProject5.webp",
       description: "New project on Katol Road, Fetri (Chicholi), touching Outer Ring Road. Fully developed NMRDA & RL sanctioned.",
@@ -31,7 +31,7 @@ const projects = {
       status: "ongoing"
     },
     {
-      id: 4,
+      id: 3,
       title: "Mahalaxmi Nagar-41",
       image: "/ongoingProject3.webp",
       description: "Premium layout near Samruddhi Mahamarg with clubhouse & swimming pool. NMRDA + RL approved. Up to 90% finance.",
@@ -39,7 +39,7 @@ const projects = {
       status: "ongoing"
     },
     {
-      id: 5,
+      id: 4,
       title: "Mahalaxmi Nagar - 42",
       image: "/ongoingProject2.webp",
       description: "Well-connected plots near Jamtha, Wardha Road. NMRDA & RL sanctioned with excellent amenities.",
@@ -47,11 +47,19 @@ const projects = {
       status: "ongoing"
     },
     {
-      id: 6,
+      id: 5,
       title: "Mahalaxmi Nagar - 43",
       image: "/ongoingProject10.webp",
       description: "Ready-to-move plots behind Royal Gondwana School, Shankarpur. Fully developed with 90% finance.",
       location: "MOUZA - SHANKARPUR",
+      status: "ongoing"
+    },
+    {
+      id: 6,
+      title: "Mahalaxmi Nagar - 44",
+      image: "/M-44.jpg",
+      description: "Mahalaxmi Developers launched the project Mahalaxmi Nagar 44. The layout is NIT / NMRDA sanctioned with RL. Bank finance is available 75% to 80% from any nationalized bank.",
+      location: "MOUZA - TARODI",
       status: "ongoing"
     },
     {
@@ -65,13 +73,13 @@ const projects = {
     {
       id: 8,
       title: "Mahalaxmi Nagar - 46",
-      image: "/ongoingProject11.webp",
-      description: "Premium plotted development near Samruddhi Mahamarg, close to AIIMS, IIM, MIHAN & D-Mart.",
-      location: "MOUZA - SUMTHANA",
+      image: "/project_M-46.jpg",
+      description: "Mahalaxmi Developers launched the project Mahalaxmi Nagar 46. The layout is NIT / NMRDA sanctioned with RL. Bank finance is available 75% to 80% from any nationalized bank.",
+      location: "MOUZA -  PANDHURNA UMRED ROAD",
       status: "ongoing"
     },
     {
-      id: 11,
+      id: 9,
       title: "Mahalaxmi Nagar - 47",
       image: "/ongoingProject12.jpg",
       description: "New launch behind Haldiram & AM Cinema on Koradi Road. NMRDA & RL approved with 90% finance.",
@@ -81,7 +89,7 @@ const projects = {
   ],
   completed: [
     {
-      id: 12,
+      id: 10,
       title: "Mahalaxmi Nagar - 37",
       image: "/completedProject1.webp",
       description: "NMRDA & RL sanctioned layout in Kotewada. 75-80% bank loan approved.",
@@ -89,7 +97,7 @@ const projects = {
       status: "completed"
     },
     {
-      id: 13,
+      id: 11,
       title: "Mahalaxmi Nagar - 35",
       image: "/completedProject2.webp",
       description: "Fully delivered premium layout with all amenities completed.",
@@ -97,7 +105,7 @@ const projects = {
       status: "completed"
     },
     {
-      id: 14,
+      id: 12,
       title: "Mahalaxmi Nagar - 34",
       image: "/completedProject3.webp",
       description: "Successfully delivered project with high appreciation value.",
@@ -106,9 +114,11 @@ const projects = {
     },
   ],
   upcoming: [
-    { id: 15, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
-    { id: 16, title: "Mahalaxmi Nagar - 49", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
-    { id: 17, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    { id: 13, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    { id: 14, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+  ],
+  launch:[
+  { id: 15, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "lunch" },
   ]
 }
 
@@ -119,17 +129,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     completed: "bg-green-500/80 text-white border-green-500/40",
     ongoing: "bg-blue-500/80 text-white border-blue-500/40",
     upcoming: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
+    launch: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
   }
 
   const statusLabels = {
     completed: "✓ Completed",
     ongoing: "⚡ Ongoing",
-    upcoming: "🚀 Upcoming",
+    upcoming: "⏳ Upcoming",
+    launch: "🚀 Launch",
   }
 
   const handleWhatsApp = () => {
     const message = `Hi, I'm interested in the project "${project.title}" located at ${project.location}. Could you share more details?`
-    const url = `https://wa.me/919579889398?text=${encodeURIComponent(message)}`
+    const url = `https://wa.me/919922638418?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
 
@@ -231,7 +243,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState<"all" | "completed" | "ongoing" | "upcoming">("all")
+  const [activeTab, setActiveTab] = useState<"all" | "completed" | "ongoing" | "upcoming" | "launch">("all")
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const hasAnimated = useRef(false)
@@ -258,6 +270,7 @@ export function ProjectsSection() {
     ...projects.completed,
     ...projects.ongoing,
     ...projects.upcoming,
+    ...projects.launch
   ], [])
 
   const filteredProjects = useMemo(() =>
@@ -298,7 +311,8 @@ export function ProjectsSection() {
             { label: "All Projects", value: "all", icon: "🏢" },
             { label: "Completed", value: "completed", icon: "✓" },
             { label: "Ongoing", value: "ongoing", icon: "⚡" },
-            { label: "Upcoming", value: "upcoming", icon: "🚀" },
+            { label: "Upcoming", value: "upcoming", icon: "📅" },
+            { label: "Launch", value: "launch", icon: "🚀" },
           ].map((tab) => (
             <button
               key={tab.value}

@@ -35,7 +35,7 @@ export function Footer() {
               Navigation
             </h4>
             <ul className="space-y-2">
-              {[{href : "#about", label : "About"}, {href : "#amenities", label : "Amenities"}, {href : "#projects", label : "Projects"}, { label: "Gallery", href: "#gallery" }, ].map((link) => (
+              {[{href : "#about", label : "About"}, {href : "#amenities", label : "Amenities"}, {href : "#projects", label : "Projects"}, { label: "Gallery", href: "#gallery" },{label:"M-49 LAUNCH",href:"https://youtube.com/@mahalaxmiinfraofficial?si=5Zf6qaG6SKiPj-ln"} ].map((link) => (
                 <li key={link.href}>
                   <a href={link.href} className="text-white/60 hover:text-white transition-colors text-sm">
                     {link.label}
@@ -74,11 +74,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-               Umesh Wandhare
+               Umesh Wandhare (SALES MANAGER)
               </li>
               <li className="flex items-center gap-2 text-white/60 text-sm">
-                <Phone size={14} className="text-white" />
-                +91 9403738418
+               <Phone size={14} className="text-white" />
+                Office Contact 9403738418
               </li>
               <li className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail size={14} className="text-white" />
