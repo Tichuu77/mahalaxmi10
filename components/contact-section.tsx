@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react"
 
 export default function ContactSection() {
@@ -10,8 +11,145 @@ export default function ContactSection() {
     subject: "",
     message: "",
   })
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(() => {
+    const suppress = typeof window !== "undefined" ? sessionStorage.getItem("contactModalSuppress") : null
+    if (suppress === "true") {
+      sessionStorage.removeItem("contactModalSuppress")
+      setIsModalOpen(false)
+    } else {
+      setIsModalOpen(true)
+    }
+  }, [])
+
+  const renderContactForm = () => (
+    <div className="bg-background/60 backdrop-blur-sm border-2 border-primary/20 p-5 sm:p-6 lg:p-8 rounded-3xl shadow-xl">
+      {submitStatus === "success" ? (
+        <div className="py-12 sm:py-16 text-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/20 border-2 border-primary/50 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="text-xl sm:text-2xl font-bold text-primary mb-2">Message Sent Successfully!</h3>
+          <p className="text-primary/60 text-sm sm:text-base">We'll get back to you as soon as possible.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+          <input type="hidden" name="from_name" value="Contact Form Website" />
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+            <div>
+              <label htmlFor="name" className="block text-primary font-semibold mb-2 text-sm">
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-primary font-semibold mb-2 text-sm">
+                Email Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+                placeholder="john@example.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="subject" className="block text-primary font-semibold mb-2 text-sm">
+              Subject <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={formState.subject}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+              placeholder="How can we help you?"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-primary font-semibold mb-2 text-sm">
+              Message <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all resize-none text-sm sm:text-base"
+              placeholder="Tell us more about your inquiry..."
+            />
+          </div>
+
+          {submitStatus === "error" && (
+            <div className="p-3 sm:p-4 bg-red-500/10 border-2 border-red-500/30 rounded-xl text-red-400 text-sm flex items-start gap-2">
+              <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Please fill in all required fields and try again.</span>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full px-6 py-3.5 sm:py-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Sending Message...
+              </>
+            ) : (
+              <>
+                <span>Send Message</span>
+                <Send size={18} />
+              </>
+            )}
+          </button>
+
+          <div className="lg:hidden grid grid-cols-2 gap-2 pt-2">
+            <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
+              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+              <span className="text-xs text-primary/70">Quick Response</span>
+            </div>
+            <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
+              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+              <span className="text-xs text-primary/70">Free Consultation</span>
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
+  )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -48,7 +186,7 @@ export default function ContactSection() {
       if (data.success) {
         setSubmitStatus("success")
         setFormState({ name: "", email: "", subject: "", message: "" })
-        setTimeout(() => setSubmitStatus("idle"), 5000)
+        router.push("/thank-you")
       } else {
         setSubmitStatus("error")
         setTimeout(() => setSubmitStatus("idle"), 3000)
@@ -63,7 +201,37 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+    <>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div
+            className="absolute inset-0"
+            onClick={() => setIsModalOpen(false)}
+          />
+          <div className="relative w-full max-w-xl mx-auto max-h-[90vh] overflow-y-auto">
+            <div className="rounded-3xl bg-background/95 border border-primary/20 shadow-2xl overflow-hidden">
+              <div className="flex items-center justify-between gap-4 px-4 py-3 border-b border-primary/10">
+                <div>
+                  <p className="text-sm font-semibold text-primary">Contact Us</p>
+                  <p className="text-xs text-primary/70">Send us a message now</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-primary/70 hover:text-primary transition-colors text-2xl leading-none"
+                  aria-label="Close contact modal"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="p-3 sm:p-4">
+                {renderContactForm()}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
@@ -170,137 +338,11 @@ export default function ContactSection() {
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bg-background/60 backdrop-blur-sm border-2 border-primary/20 p-5 sm:p-6 lg:p-8 rounded-3xl shadow-xl">
-              {submitStatus === "success" ? (
-                <div className="py-12 sm:py-16 text-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/20 border-2 border-primary/50 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                    <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-primary mb-2">Message Sent Successfully!</h3>
-                  <p className="text-primary/60 text-sm sm:text-base">We'll get back to you as soon as possible.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-                  <input type="hidden" name="from_name" value="Contact Form Website" />
-                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
-
-                  {/* Name and Email Row */}
-                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
-                    <div>
-                      <label htmlFor="name" className="block text-primary font-semibold mb-2 text-sm">
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formState.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
-                        placeholder="John Doe"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-primary font-semibold mb-2 text-sm">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Subject */}
-                  <div>
-                    <label htmlFor="subject" className="block text-primary font-semibold mb-2 text-sm">
-                      Subject <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formState.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
-                      placeholder="How can we help you?"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label htmlFor="message" className="block text-primary font-semibold mb-2 text-sm">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formState.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all resize-none text-sm sm:text-base"
-                      placeholder="Tell us more about your inquiry..."
-                    />
-                  </div>
-
-                  {/* Error Message */}
-                  {submitStatus === "error" && (
-                    <div className="p-3 sm:p-4 bg-red-500/10 border-2 border-red-500/30 rounded-xl text-red-400 text-sm flex items-start gap-2">
-                      <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>Please fill in all required fields and try again.</span>
-                    </div>
-                  )}
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-6 py-3.5 sm:py-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Sending Message...
-                      </>
-                    ) : (
-                      <>
-                        <span>Send Message</span>
-                        <Send size={18} />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Mobile Trust Badges */}
-                  <div className="lg:hidden grid grid-cols-2 gap-2 pt-2">
-                    <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-xs text-primary/70">Quick Response</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-xs text-primary/70">Free Consultation</span>
-                    </div>
-                  </div>
-                </form>
-              )}
-            </div>
+            {renderContactForm()}
           </div>
         </div>
       </div>
     </section>
+    </>
   )
 }
