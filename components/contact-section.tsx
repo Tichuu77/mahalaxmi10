@@ -29,7 +29,7 @@ export default function ContactSection() {
   const renderContactForm = () => (
     <div className="bg-background/60 backdrop-blur-sm border-2 border-primary/20 p-5 sm:p-6 lg:p-8 rounded-3xl shadow-xl">
       {submitStatus === "success" ? (
-        <div className="py-12 sm:py-16 text-center">
+        <div className="py-5 sm:py-8 text-center">
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/20 border-2 border-primary/50 flex items-center justify-center mx-auto mb-4 sm:mb-6">
             <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -39,11 +39,11 @@ export default function ContactSection() {
           <p className="text-primary/60 text-sm sm:text-base">We'll get back to you as soon as possible.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
           <input type="hidden" name="from_name" value="Contact Form Website" />
           <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
 
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+          <div className="grid sm:grid-cols-2 gap-2 sm:gap-3">
             <div>
               <label htmlFor="name" className="block text-primary font-semibold mb-2 text-sm">
                 Full Name <span className="text-red-500">*</span>
@@ -55,7 +55,7 @@ export default function ContactSection() {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+                className="w-full px-4 py-2 sm:py-2.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
                 placeholder="John Doe"
               />
             </div>
@@ -71,7 +71,7 @@ export default function ContactSection() {
                 value={formState.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+                className="w-full px-4 py-2 sm:py-2.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
                 placeholder="john@example.com"
               />
             </div>
@@ -88,7 +88,7 @@ export default function ContactSection() {
               value={formState.subject}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
+              className="w-full px-4 py-2 sm:py-2.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
               placeholder="How can we help you?"
             />
           </div>
@@ -103,8 +103,8 @@ export default function ContactSection() {
               value={formState.message}
               onChange={handleChange}
               required
-              rows={5}
-              className="w-full px-4 py-3 sm:py-3.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all resize-none text-sm sm:text-base"
+              rows={2}
+              className="w-full px-4 py-2 sm:py-2.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all resize-none text-sm sm:text-base"
               placeholder="Tell us more about your inquiry..."
             />
           </div>
@@ -135,17 +135,6 @@ export default function ContactSection() {
               </>
             )}
           </button>
-
-          <div className="lg:hidden grid grid-cols-2 gap-2 pt-2">
-            <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
-              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-              <span className="text-xs text-primary/70">Quick Response</span>
-            </div>
-            <div className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg">
-              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-              <span className="text-xs text-primary/70">Free Consultation</span>
-            </div>
-          </div>
         </form>
       )}
     </div>
