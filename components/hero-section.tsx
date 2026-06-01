@@ -183,7 +183,7 @@ export function HeroSection() {
               >
                 <div className="inline-block bg-gradient-to-r from-[#C9862b] to-[#C9862b]/80 px-6 py-3 rounded-lg mb-6">
                   <p className="text-white font-bold text-lg sm:text-xl">
-                    Starting ₹ <span className="text-2xl">_</span> Lakh
+                    Starting ₹ <span className="text-2xl">32.5</span> Lakh
                   </p>
                 </div>
               </div>
