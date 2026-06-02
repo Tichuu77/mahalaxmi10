@@ -10,7 +10,7 @@ export function HeroSection() {
   const [scriptLoaded, setScriptLoaded] = useState(false)
   const [isVideoVisible, setIsVideoVisible] = useState(false)
   const [showPhoneHeader, setShowPhoneHeader] = useState(false)
-  const [leadForm, setLeadForm] = useState({ name: "", location: "" })
+  const [leadForm, setLeadForm] = useState({ name: "", location: "", phone: "" })
   const heroSectionRef = useRef<HTMLDivElement>(null)
 
   // Delay video initialization for better performance
@@ -72,9 +72,9 @@ export function HeroSection() {
 
   const handleLeadFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (leadForm.name && leadForm.location) {
+    if (leadForm.name && leadForm.location && leadForm.phone) {
       console.log("Lead form submitted:", leadForm)
-      setLeadForm({ name: "", location: "" })
+      setLeadForm({ name: "", location: "", phone: "" })
       // You can add API call here
     }
   }
@@ -167,10 +167,10 @@ export function HeroSection() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                   Build Your Dream Home <br />
                   <span className="relative inline-block">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9862b] via-[#30534A] to-[#C9862b]">
+                    <span className="bg-gradient-to-r from-[#C9862b] via-[#f5d76e] to-[#C9862b] text-transparent bg-clip-text font-extrabold">
                       With Mahalaxmi Infra
                     </span>
-                    <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#C9862b] via-[#30534A] to-[#C9862b] opacity-50 blur-sm"></div>
+                    <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#C9862b] via-[#f5d76e] to-[#C9862b] opacity-70"></div>
                   </span>
                 </h1>
               </div>
@@ -183,7 +183,7 @@ export function HeroSection() {
               >
                 <div className="inline-block bg-gradient-to-r from-[#C9862b] to-[#C9862b]/80 px-6 py-3 rounded-lg mb-6">
                   <p className="text-white font-bold text-lg sm:text-xl">
-                    Starting ₹ <span className="text-2xl">32.5</span> Lakh
+                    Starting ₹ <span className="text-2xl">23</span> Lakh
                   </p>
                 </div>
               </div>
@@ -208,7 +208,7 @@ export function HeroSection() {
                 <div className="inline-flex items-start gap-2 sm:gap-3 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 sm:p-4 mb-6 max-w-full">
                   <MapPin className="w-5 h-5 text-[#C9862b] flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-white/90 leading-relaxed">
-                    <span className="font-semibold text-white">Prime Locations:</span> Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road
+                    <span className="font-semibold text-white">Prime Locations:</span> Bhandara Road, Umred Road, Kamti Road, Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road
                   </p>
                 </div>
               </div>
@@ -282,6 +282,21 @@ export function HeroSection() {
                       onChange={(e) => setLeadForm({ ...leadForm, location: e.target.value })}
                       required
                       placeholder="Enter your location"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:border-[#C9862b] focus:outline-none transition-all"
+                    />
+                  </div>
+
+                  {/* Mobile Number Input */}
+                  <div>
+                    <label className="block text-white/80 text-sm font-semibold mb-2">
+                      Mobile Number <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={leadForm.phone}
+                      onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                      required
+                      placeholder="Enter your mobile number"
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:border-[#C9862b] focus:outline-none transition-all"
                     />
                   </div>
