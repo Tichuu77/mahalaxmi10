@@ -10,7 +10,7 @@ export function HeroSection() {
   const [scriptLoaded, setScriptLoaded] = useState(false)
   const [isVideoVisible, setIsVideoVisible] = useState(false)
   const [showPhoneHeader, setShowPhoneHeader] = useState(false)
-  const [leadForm, setLeadForm] = useState({ name: "", location: "", phone: "" })
+  const [leadForm, setLeadForm] = useState({ name: "", phone: "",message:""})
   const heroSectionRef = useRef<HTMLDivElement>(null)
 
   // Delay video initialization for better performance
@@ -72,9 +72,9 @@ export function HeroSection() {
 
   const handleLeadFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (leadForm.name && leadForm.location && leadForm.phone) {
+    if (leadForm.name && leadForm.message && leadForm.phone) {
       console.log("Lead form submitted:", leadForm)
-      setLeadForm({ name: "", location: "", phone: "" })
+      setLeadForm({ name: "", message: "", phone: "" })
       // You can add API call here
     }
   }
@@ -208,7 +208,7 @@ export function HeroSection() {
                 <div className="inline-flex items-start gap-2 sm:gap-3 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 sm:p-4 mb-6 max-w-full">
                   <MapPin className="w-5 h-5 text-[#C9862b] flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-white/90 leading-relaxed">
-                    <span className="font-semibold text-white">Prime Locations:</span> Bhandara Road, Umred Road, Kamti Road, Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road
+                    <span className="font-semibold text-white">Prime Locations:</span> Bhandara Road , umred Road , kamti Road , plot starting 23 lakh
                   </p>
                 </div>
               </div>
@@ -271,20 +271,7 @@ export function HeroSection() {
                     />
                   </div>
 
-                  {/* Location Input */}
-                  <div>
-                    <label className="block text-white/80 text-sm font-semibold mb-2">
-                      Location <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={leadForm.location}
-                      onChange={(e) => setLeadForm({ ...leadForm, location: e.target.value })}
-                      required
-                      placeholder="Enter your location"
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:border-[#C9862b] focus:outline-none transition-all"
-                    />
-                  </div>
+                 
 
                   {/* Mobile Number Input */}
                   <div>
@@ -297,6 +284,21 @@ export function HeroSection() {
                       onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
                       required
                       placeholder="Enter your mobile number"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:border-[#C9862b] focus:outline-none transition-all"
+                    />
+                  </div>
+
+                   {/* Location Input */}
+                  <div>
+                    <label className="block text-white/80 text-sm font-semibold mb-2">
+                      Message <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={leadForm.message}
+                      onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
+                      required
+                      placeholder="Enter your message"
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:border-[#C9862b] focus:outline-none transition-all"
                     />
                   </div>

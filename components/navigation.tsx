@@ -10,6 +10,7 @@ export function Navigation() {
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#amenities", label: "Amenities" },
+    { href: "#ongoing-projects", label: "Ongoing" },
     { href: "#projects", label: "Projects" },
     {label : "Gallery", href : "#gallery"},
     { label: "User Guide", href: "#user-guide" },

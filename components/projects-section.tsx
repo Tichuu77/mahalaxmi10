@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from "react"
 import { ArrowRight, MapPin, Phone } from "lucide-react"
 
-type Project = {
+export type Project = {
   id: number
   title: string
   image: string
@@ -12,7 +12,7 @@ type Project = {
   status: string
 }
 
-const projects = {
+export const projects = {
   ongoing: [
     {
       id: 1,
@@ -122,7 +122,7 @@ const projects = {
   ]
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
 
   const statusColors: Record<string, string> = {

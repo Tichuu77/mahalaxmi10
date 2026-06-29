@@ -8,7 +8,6 @@ export default function ContactSection() {
   const [formState, setFormState] = useState({
     name: "",
     mobile: "",
-    city: "",
     message: "",
   })
   const router = useRouter()
@@ -77,21 +76,7 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="city" className="block text-primary font-semibold mb-2 text-sm">
-              City <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={formState.city}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 sm:py-2.5 bg-primary/5 border-2 border-primary/20 rounded-xl text-primary placeholder:text-primary/40 focus:border-primary focus:outline-none transition-all text-sm sm:text-base"
-              placeholder="Enter your city"
-            />
-          </div>
+        
 
           <div>
             <label htmlFor="message" className="block text-primary font-semibold mb-2 text-sm">
@@ -152,7 +137,7 @@ export default function ContactSection() {
     setIsSubmitting(true)
     setSubmitStatus("idle")
 
-    if (!formState.name || !formState.mobile || !formState.city || !formState.message) {
+    if (!formState.name || !formState.mobile  || !formState.message) {
       setSubmitStatus("error")
       setIsSubmitting(false)
       setTimeout(() => setSubmitStatus("idle"), 3000)
@@ -167,14 +152,13 @@ export default function ContactSection() {
           access_key: "4a812223-4e48-4fb5-8cef-4ecbbc996bf6", // 🔑 Replace with your Web3Forms access key
           name: formState.name,
           mobile: formState.mobile,
-          city: formState.city,
           message: formState.message,
         }),
       })
       const data = await res.json()
       if (data.success) {
         setSubmitStatus("success")
-        setFormState({ name: "", mobile: "", city: "", message: "" })
+        setFormState({ name: "", mobile: "",  message: "" })
         router.push("/thank-you")
       } else {
         setSubmitStatus("error")

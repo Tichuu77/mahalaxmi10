@@ -4,9 +4,10 @@ import { Navigation } from "@/components/navigation"
 
 // Above-the-fold: load eagerly
 // Everything below the fold: lazy-load with next/dynamic (code-split + deferred JS)
-const AboutSection       = dynamic(() => import("@/components/about-section").then(m => ({ default: m.AboutSection })))
+const OngoingProjectsSection = dynamic(() => import("@/components/ongoing-projects-section").then(m => ({ default: m.OngoingProjectsSection })))
 const AmenitiesSection   = dynamic(() => import("@/components/amenities-section").then(m => ({ default: m.AmenitiesSection })))
 const ProjectsSection    = dynamic(() => import("@/components/projects-section").then(m => ({ default: m.ProjectsSection })))
+const AboutSection       = dynamic(() => import("@/components/about-section").then(m => ({ default: m.AboutSection })))
 const GallerySection     = dynamic(() => import("@/components/gallery-section").then(m => ({ default: m.GallerySection })))
 const WhyChooseUsSection = dynamic(() => import("@/components/why-choose-us-section").then(m => ({ default: m.WhyChooseUsSection })))
 const UserGuideSection   = dynamic(() => import("@/components/user-guide-section").then(m => ({ default: m.UserGuideSection })))
@@ -23,9 +24,10 @@ export default function Home() {
     <main>
       <Navigation />
       <HeroSection />
-      <AboutSection />
+      <OngoingProjectsSection />
       <AmenitiesSection />
       <ProjectsSection />
+       <AboutSection />
       <GallerySection />
       <WhyChooseUsSection />
       <UserGuideSection />
