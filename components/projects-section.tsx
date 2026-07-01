@@ -12,8 +12,25 @@ export type Project = {
   status: string
 }
 
+const getProjectNumber = (title: string): number => {
+  const match = title.match(/(\d+)/)
+  if (match) {
+    return parseInt(match[1], 10)
+  }
+  if (title.includes("Tattva Apas")) return 46.5
+  return 0
+}
+
+const sortProjectsDescending = <T extends { title: string }>(list: T[]): T[] => {
+  return [...list].sort((a, b) => {
+    const numA = getProjectNumber(a.title)
+    const numB = getProjectNumber(b.title)
+    return numB - numA
+  })
+}
+
 export const projects = {
-  ongoing: [
+  ongoing: sortProjectsDescending([
     {
       id: 1,
       title: "Mahalaxmi Nagar-31",
@@ -86,8 +103,8 @@ export const projects = {
       location: "KORADI ROAD (Behind Haldiram)",
       status: "ongoing"
     },
-  ],
-  completed: [
+  ]),
+  completed: sortProjectsDescending([
     {
       id: 10,
       title: "Mahalaxmi Nagar - 37",
@@ -112,14 +129,14 @@ export const projects = {
       location: "MOUZA - BAHADURA",
       status: "completed"
     },
-  ],
-  upcoming: [
+  ]),
+  upcoming: sortProjectsDescending([
     { id: 13, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
     { id: 14, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
-  ],
-  launch: [
+  ]),
+  launch: sortProjectsDescending([
     { id: 15, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "launch" },
-  ]
+  ])
 }
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -266,12 +283,12 @@ export function ProjectsSection() {
     return () => observer.disconnect()
   }, [])
 
-  const allProjects = useMemo(() => [
+  const allProjects = useMemo(() => sortProjectsDescending([
     ...projects.completed,
     ...projects.ongoing,
     ...projects.upcoming,
     ...projects.launch
-  ], [])
+  ]), [])
 
   const filteredProjects = useMemo(() =>
     activeTab === "all"
