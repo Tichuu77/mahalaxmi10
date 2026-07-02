@@ -103,7 +103,7 @@ export const projects = {
       location: "KORADI ROAD (Behind Haldiram)",
       status: "ongoing"
     },
-    { id: 10, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "launch" },
+    { id: 10, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "ongoing" },
   ]),
   completed: sortProjectsDescending([
     {
@@ -147,14 +147,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     completed: "bg-green-500/80 text-white border-green-500/40",
     ongoing: "bg-blue-500/80 text-white border-blue-500/40",
     upcoming: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
-    launch: "bg-[#C9862b]/80 text-white border-[#C9862b]/40",
   }
 
   const statusLabels: Record<string, string> = {
     completed: "✓ Completed",
     ongoing: "⚡ Ongoing",
     upcoming: "⏳ Upcoming",
-    launch: "🚀 Launch",
   }
 
   const handleWhatsApp = () => {
@@ -261,7 +259,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
 }
 
 export function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState<"all" | "completed" | "ongoing" | "upcoming" | "launch">("all")
+  const [activeTab, setActiveTab] = useState<"all" | "completed" | "ongoing" | "upcoming"  >("all")
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const hasAnimated = useRef(false)
@@ -329,7 +327,7 @@ export function ProjectsSection() {
             { label: "Completed", value: "completed", icon: "✓" },
             { label: "Ongoing", value: "ongoing", icon: "⚡" },
             { label: "Upcoming", value: "upcoming", icon: "📅" },
-            { label: "Launch", value: "launch", icon: "🚀" },
+            
           ].map((tab) => (
             <button
               key={tab.value}
