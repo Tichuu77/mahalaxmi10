@@ -98,15 +98,16 @@ export const projects = {
     {
       id: 9,
       title: "Mahalaxmi Nagar - 47",
-      image: "/ongoingProject12.jpg",
+      image: "/M-47-PROJECT.jpg",
       description: "New launch behind Haldiram & AM Cinema on Koradi Road. NMRDA & RL approved with 90% finance.",
       location: "KORADI ROAD (Behind Haldiram)",
       status: "ongoing"
     },
+    { id: 10, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "launch" },
   ]),
   completed: sortProjectsDescending([
     {
-      id: 10,
+      id: 11,
       title: "Mahalaxmi Nagar - 37",
       image: "/completedProject1.webp",
       description: "NMRDA & RL sanctioned layout in Kotewada. 75-80% bank loan approved.",
@@ -114,7 +115,7 @@ export const projects = {
       status: "completed"
     },
     {
-      id: 11,
+      id: 12,
       title: "Mahalaxmi Nagar - 35",
       image: "/completedProject2.webp",
       description: "Fully delivered premium layout with all amenities completed.",
@@ -122,7 +123,7 @@ export const projects = {
       status: "completed"
     },
     {
-      id: 12,
+      id: 13,
       title: "Mahalaxmi Nagar - 34",
       image: "/completedProject3.webp",
       description: "Successfully delivered project with high appreciation value.",
@@ -131,12 +132,12 @@ export const projects = {
     },
   ]),
   upcoming: sortProjectsDescending([
-    { id: 13, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
-    { id: 14, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    { id: 14, title: "Mahalaxmi Nagar - 48", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    { id: 15, title: "Mahalaxmi Nagar - 50", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    { id: 16, title: "Mahalaxmi Nagar - 51", image: "/plotDef.avif", description: "", location: "", status: "upcoming" },
+    
   ]),
-  launch: sortProjectsDescending([
-    { id: 15, title: "Mahalaxmi Nagar - 49", image: "/project_M-49.jpeg", description: "Mahalaxmi Launches New Premium Residential Complex", location: "MOUZA - NCI", status: "launch" },
-  ])
+  
 }
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -286,8 +287,7 @@ export function ProjectsSection() {
   const allProjects = useMemo(() => sortProjectsDescending([
     ...projects.completed,
     ...projects.ongoing,
-    ...projects.upcoming,
-    ...projects.launch
+    ...projects.upcoming
   ]), [])
 
   const filteredProjects = useMemo(() =>
